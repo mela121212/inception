@@ -1,0 +1,11 @@
+.env
+
+secrets/*.txt
+!secrets/.gitkeep
+
+*.log
+
+.vscode/
+.idea/
+
+.DS_Store
