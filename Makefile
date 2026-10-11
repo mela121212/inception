@@ -1,13 +1,17 @@
-NAME		= inception
-COMPOSE 	= docker compose
+NAME			= inception
+COMPOSE 		= docker compose
 COMPOSE_FILE	= ./srcs/docker-compose.yml
+DATA_DIR		= /home/carmelag/data
 
 all: up
 
-up:
+prepare:
+	mkdir -p $(DATA_DIR)/mariadb $(DATA_DIR)/wordpress
+
+up: prepare
 	$(COMPOSE) -f $(COMPOSE_FILE) up -d --build
 
-build:
+build: prepare
 	$(COMPOSE) -f $(COMPOSE_FILE) build
 
 down:
@@ -27,11 +31,15 @@ logs:
 ps:
 	$(COMPOSE) -f $(COMPOSE_FILE) ps
 
-clean: down
-	docker system prune -f
+clean:
+	$(COMPOSE) -f $(COMPOSE_FILE) down --remove-orphans
 
-fclean: down
-	docker system prune -af --volumes
+fclean:
+	$(COMPOSE) -f $(COMPOSE_FILE) down -v --remove-orphans
+
+re: fclean up
+
+.PHONY: all prepare up build down start stop restart logs ps clean fclean re
 
 re: fclean up
 
