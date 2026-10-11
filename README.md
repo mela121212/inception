@@ -33,7 +33,7 @@ The project also uses Docker networking and named volumes in order to allow the 
         ├── mariadb/
         ├── nginx/
         └── wordpress/
-
+```
 The srcs directory contains the Docker Compose configuration, the .env file, and the Dockerfiles and configuration files required to build the services.
 
 The .env file defines environment variables used to configure the infrastructure, such as database names, usernames, and other service settings. Docker Compose can load this file to substitute variables in docker-compose.yml.
