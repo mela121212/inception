@@ -75,7 +75,7 @@ if [ ! -f /var/www/html/wp-config.php ]; then
         "${WP_USER}" \
         "${WP_USER_EMAIL}" \
         --user_pass="${WP_USER_PASSWORD}" \
-        --role=author \
+        --role=subscriber \
         --allow-root \
         --path=/var/www/html
 else
